@@ -54,6 +54,12 @@ NS_ASSUME_NONNULL_BEGIN
 @property (copy, nonatomic, nullable) NSString *buttonTitle;
 
 /*!
+ * @property serverCallbackArgs
+ * @abstract 콜백 파라미터를 보낸다 
+ */
+@property (copy, nonatomic, nullable) NSString *serverCallbackArgs;
+
+/*!
  * @property buttons
  * @abstract 버튼 목록. 버튼 타이틀과 링크를 변경하고 싶을때, 버튼 두개를 사용하고 싶을때 사용. (최대 2개)
  */
