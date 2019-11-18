@@ -692,8 +692,16 @@ public class KakaoCordovaSDK extends CordovaPlugin {
 
             addButtonsArray(object, feedTemplateBuilder);
 
-            KakaoLinkService.getInstance().sendDefault(currentActivity, feedTemplateBuilder.build(),
-                    kakaoLinkResponseCallback);
+            Map<String, String> serverCallbackArgs = null;
+            if (object.has("serverCallbackArgs ")) {
+                JSONObject _serverCallbackArgs =  object.getJSONObject("_serverCallbackArgs");
+                serverCallbackArgs =  new ObjectMapper().readValue(_serverCallbackArgs , HashMap.class);
+
+            }
+
+
+            KakaoLinkService.getInstance()
+                    .sendDefault(currentActivity, feedTemplateBuilder.build(), serverCallbackArgs, kakaoLinkResponseCallback);
 
         } catch (Exception e) {
             e.printStackTrace();
