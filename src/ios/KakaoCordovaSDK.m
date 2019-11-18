@@ -375,7 +375,8 @@
             if(options[@"buttonTitle"] != NULL){
                 feedTemplateBuilder.buttonTitle = options[@"buttonTitle"];
             }
-            NSString serverCallbackArgs ;
+            NSDictionary *serverCallbackArgs = @{@"user_id": @"abcd",
+            @"product_id": @"1234"};
             if(options[@"serverCallbackArgs"] != NULL){
                 serverCallbackArgs = options[@"serverCallbackArgs"];
             }
