@@ -350,7 +350,12 @@
     {
         NSMutableDictionary *options = [[command.arguments lastObject] mutableCopy];
         NSLog(@"%@", options);
-        
+        NSDictionary *serverCallbackArgs;
+        if(options[@"serverCallbackArgs"] != NULL){
+            serverCallbackArgs = (NSDictionary *)options[@"serverCallbackArgs"];
+        }
+        NSLog(@"testtttt message: testtttttesttttttesttttttesttttttesttttt" );
+        NSLog(@"%@", serverCallbackArgs);
         // feed template
         KMTTemplate *template = [KMTFeedTemplate feedTemplateWithBuilderBlock:^(KMTFeedTemplateBuilder * _Nonnull feedTemplateBuilder) {
             
@@ -375,11 +380,8 @@
             if(options[@"buttonTitle"] != NULL){
                 feedTemplateBuilder.buttonTitle = options[@"buttonTitle"];
             }
-            NSDictionary *serverCallbackArgs = @{@"user_id": @"abcd",
-            @"product_id": @"1234"};
-            if(options[@"serverCallbackArgs"] != NULL){
-                serverCallbackArgs = options[@"serverCallbackArgs"];
-            }
+             
+            
             
         }];
         
@@ -636,6 +638,8 @@
 {
     [[KLKTalkLinkCenter sharedCenter] sendDefaultWithTemplate:template serverCallbackArgs:serverCallbackArgs  success:^(NSDictionary<NSString *,NSString *> * _Nullable warningMsg, NSDictionary<NSString *,NSString *> * _Nullable argumentMsg) {
         
+        
+        
         // 성공
         NSLog(@"warning message: %@", warningMsg);
         NSLog(@"argument message: %@", argumentMsg);
@@ -728,6 +732,11 @@
         }
     }];
 }
+
+
+
+
+
     
 - (KMTCommerceObject *)getKMTCommerceObject:(NSDictionary *)object {
     if(object == NULL){
