@@ -375,11 +375,15 @@
             if(options[@"buttonTitle"] != NULL){
                 feedTemplateBuilder.buttonTitle = options[@"buttonTitle"];
             }
+            NSString serverCallbackArgs ;
+            if(options[@"serverCallbackArgs"] != NULL){
+                serverCallbackArgs = options[@"serverCallbackArgs"];
+            }
             
         }];
         
         // 카카오링크 실행
-        [self sendDefaultWithTemplate:template command:command];
+        [self sendDefaultWithTemplate:template command:command serverCallbackArgs:serverCallbackArgs];
     }
     
 - (void)sendLinkList:(CDVInvokedUrlCommand*)command
@@ -611,7 +615,7 @@
     
 - (void)sendDefaultWithTemplate:(KMTTemplate*)template command:(CDVInvokedUrlCommand*)command
     {
-        [[KLKTalkLinkCenter sharedCenter] sendDefaultWithTemplate:template success:^(NSDictionary<NSString *,NSString *> * _Nullable warningMsg, NSDictionary<NSString *,NSString *> * _Nullable argumentMsg) {
+        [[KLKTalkLinkCenter sharedCenter] sendDefaultWithTemplate:template  success:^(NSDictionary<NSString *,NSString *> * _Nullable warningMsg, NSDictionary<NSString *,NSString *> * _Nullable argumentMsg) {
             
             // 성공
             NSLog(@"warning message: %@", warningMsg);
@@ -626,6 +630,26 @@
             
         }];
     }
+
+- (void)sendDefaultWithTemplate:(KMTTemplate*)template command:(CDVInvokedUrlCommand*)command serverCallbackArgs:serverCallbackArgs
+{
+    [[KLKTalkLinkCenter sharedCenter] sendDefaultWithTemplate:template serverCallbackArgs:serverCallbackArgs  success:^(NSDictionary<NSString *,NSString *> * _Nullable warningMsg, NSDictionary<NSString *,NSString *> * _Nullable argumentMsg) {
+        
+        // 성공
+        NSLog(@"warning message: %@", warningMsg);
+        NSLog(@"argument message: %@", argumentMsg);
+        CDVPluginResult* pluginResult = pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:@""];
+        [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
+        
+    } failure:^(NSError * _Nonnull error) {
+        
+        NSLog(@"error: %@", error);
+        [self errorHandler:command.callbackId error:error errorCode:0 errorMessage:nil];
+        
+    }];
+}
+
+
     
 - (BOOL)addContentsArray:(NSDictionary *)object templateBuilder:(KMTListTemplateBuilder *)templateBuilder {
     if(object == NULL){
