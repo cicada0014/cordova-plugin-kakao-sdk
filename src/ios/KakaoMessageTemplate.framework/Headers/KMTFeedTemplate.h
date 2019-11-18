@@ -79,6 +79,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (copy, nonatomic) KMTContentObject *content;
 @property (copy, nonatomic, nullable) KMTSocialObject *social;
 @property (copy, nonatomic, nullable) NSString *buttonTitle;
+@property (copy, nonatomic, nullable) NSString *serverCallbackArgs;
 @property (copy, nonatomic, nullable) NSMutableArray<KMTButtonObject *> *buttons;
 
 - (void)addButton:(KMTButtonObject *)button;
