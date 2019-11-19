@@ -701,10 +701,10 @@ public class KakaoCordovaSDK extends CordovaPlugin {
                 while(i.hasNext())
                 {
                     String key = i.next().toString();
-                    serverCallbackArgs.put(key , _serverCallbackArgs.getString(k));
+                    serverCallbackArgs.put(key , _serverCallbackArgs.getString(key));
                 }
 
-                Log.v( LOG_TAG,    serverCallbackArgs.toString());
+                Log.v( LOG_TAG,   serverCallbackArgs.toString());
 //                serverCallbackArgs =  new ObjectMapper().readValue(_serverCallbackArgs , HashMap.class);
 
             }
@@ -752,7 +752,7 @@ public class KakaoCordovaSDK extends CordovaPlugin {
                         "Either Content or Content.title/link/imageURL is null.");
                 return;
             }
-
+            
             addButtonsArray(object, listTemplateBuilder);
 
             KakaoLinkService.getInstance().sendDefault(currentActivity, listTemplateBuilder.build(),
