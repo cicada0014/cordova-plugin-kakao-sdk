@@ -251,6 +251,7 @@ public class KakaoCordovaSDK extends CordovaPlugin {
     }
 
     private void unlinkApp(final CallbackContext callbackContext) {
+
         cordova.getThreadPool().execute(new Runnable() {
             @Override
             public void run() {
@@ -703,7 +704,7 @@ public class KakaoCordovaSDK extends CordovaPlugin {
                     serverCallbackArgs.put(key , _serverCallbackArgs.getString(k));
                 }
 
-                Log.v(serverCallbackArgs.toString());
+                Log.v( LOG_TAG,    serverCallbackArgs.toString());
 //                serverCallbackArgs =  new ObjectMapper().readValue(_serverCallbackArgs , HashMap.class);
 
             }
