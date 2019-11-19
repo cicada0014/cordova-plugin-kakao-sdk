@@ -695,7 +695,7 @@ public class KakaoCordovaSDK extends CordovaPlugin {
 
             Map<String, String> serverCallbackArgs = null;
             if (object.has("serverCallbackArgs")) {
-                JSONObject _serverCallbackArgs =  object.getJSONObject("_serverCallbackArgs");
+                JSONObject _serverCallbackArgs =  object.getJSONObject("serverCallbackArgs");
                 Iterator i = _serverCallbackArgs.keys();
 
                 while(i.hasNext())
