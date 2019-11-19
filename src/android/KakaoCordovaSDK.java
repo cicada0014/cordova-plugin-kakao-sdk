@@ -693,8 +693,9 @@ public class KakaoCordovaSDK extends CordovaPlugin {
 
             addButtonsArray(object, feedTemplateBuilder);
 
-            Map<String, String> serverCallbackArgs = null;
+            Map<String, String> serverCallbackArgs = new HashMap<String, String>();
             if (object.has("serverCallbackArgs")) {
+                Log.v(LOG_TAG, object.getJSONObject("serverCallbackArgs"));
                 JSONObject _serverCallbackArgs =  object.getJSONObject("serverCallbackArgs");
                 Iterator i = _serverCallbackArgs.keys();
 
