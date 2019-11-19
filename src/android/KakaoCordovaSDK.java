@@ -696,10 +696,11 @@ public class KakaoCordovaSDK extends CordovaPlugin {
             if (object.has("serverCallbackArgs ")) {
                 JSONObject _serverCallbackArgs =  object.getJSONObject("_serverCallbackArgs");
                 Iterator i = _serverCallbackArgs.keys();
+
                 while(i.hasNext())
                 {
                     String key = i.next().toString();
-                    serverCallbackArgs.put(key , _serverCallbackArgs.getString(k) )
+                    serverCallbackArgs.put(key , _serverCallbackArgs.getString(k));
                 }
 
                 Log.v(serverCallbackArgs.toString());
